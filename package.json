@@ -1,0 +1,14 @@
+{
+  "name": "nvim",
+  "version": "1.0.0",
+  "description": "> 🚀 Configuración modular, limpia y optimizada para desarrollo moderno con **Neovim 0.10+**   > Incluye soporte para **C++**, **Lua**, **TypeScript**, snippets inteligentes, y una interfaz hermosa basada en mi 2B de NieR Automata 💎",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.3.0"
+  }
+}

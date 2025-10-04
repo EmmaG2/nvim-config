@@ -3,6 +3,7 @@ plugin/
 pack/
 lazy-lock.json
 *.log
+node_modules
 
 # Archivos temporales
 session/
