@@ -1,0 +1,17 @@
+# Archivos de plugins y runtime
+plugin/
+pack/
+lazy-lock.json
+*.log
+
+# Archivos temporales
+session/
+swap/
+*.swp
+*.swo
+*.bak
+*.tmp
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
