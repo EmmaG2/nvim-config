@@ -1,4 +1,5 @@
-# 💤 Mi Configuración Personal de Neovim
+# 💤 NieR Automata 2B - Nevovim Config
+![Dashboard](screenshots/dashboard.png)
 
 > 🚀 Configuración modular, limpia y optimizada para desarrollo moderno con **Neovim 0.10+**  
 > Incluye soporte para **C++**, **Lua**, **TypeScript**, snippets inteligentes, y una interfaz hermosa basada en mi 2B de NieR Automata 💎  
