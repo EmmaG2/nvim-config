@@ -47,6 +47,6 @@
 ## 🚀 Instalación
 
 ```bash
-git clone https://github.com/<tu-usuario>/nvim-config ~/.config/nvim
+git clone https://github.com/EmmaG2/nvim-config ~/.config/nvim
 nvim
 ```
