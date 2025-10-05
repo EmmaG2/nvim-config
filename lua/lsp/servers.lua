@@ -2,19 +2,12 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 capabilities.textDocument.completion.completionItem.snippetSupport = false
 
-require("lspconfig").clangd.setup({
-    capabilities = capabilities,
-    cmd = { "clangd", "--std=c++17" },
-})
-
-
-
 local lspconfig = require("lspconfig")
 lspconfig.clangd.setup {
     cmd = {
         "clangd",
-        "--std=c++17",              -- estándar
-        "--compile-commands-dir=.", -- busca en el proyecto
+        "--background-index",
+        "--clang-tidy"
     },
 }
 
