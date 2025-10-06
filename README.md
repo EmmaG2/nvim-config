@@ -11,7 +11,7 @@
 - 🧩 **Arquitectura modular** (`lua/`) — todo dividido por propósito: LSP, plugins, UI, etc.  
 - ⚙️ **Gestión de plugins con [`lazy.nvim`](https://github.com/folke/lazy.nvim)**  
 - 🎨 **Tema Catppuccin (Mocha)** totalmente integrado con Lualine, Telescope y Alpha  
-- 🔮 **Inicio personalizado** con [Alpha.nvim](https://github.com/goolord/alpha-nvim) y arte ASCII de *NieR Automata — 2B*  
+- 🔮  **Inicio personalizado** con [Alpha.nvim](https://github.com/goolord/alpha-nvim) y arte ASCII de *NieR Automata — 2B*  
 - 🧠 **LSP configurado** (C++, Lua, TypeScript) vía `mason.nvim` + `lspconfig`  
 - 💬 **Autocompletado inteligente** con `nvim-cmp` + `LuaSnip` + `friendly-snippets`  
 - 🪶 **Snippets personalizados para C++** tipo VSCode (for loops, ifs, clases, etc.)  
@@ -19,6 +19,7 @@
 - 🔍 **Telescope** para búsqueda rápida, archivos recientes, etc.  
 - 🧱 **Lualine** con integración visual y separadores estilizados  
 - 💡 **Atajos personalizados** (líder = espacio) para máxima productividad  
+- 🖋️ **Tipografía parcheada** Tipografía Dank Mono parcheada con Nerd Fonts (Si la quieres mándame correo)
 
 ---
 
@@ -44,6 +45,10 @@
 │   └── init.lua               # (Opcional) plantillas
 └── README.md
 ```
+
+## 🔮 Preview de código
+
+![Code](screenshots/code.png)
 
 ## 🚀 Instalación
 
