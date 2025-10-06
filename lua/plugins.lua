@@ -51,6 +51,15 @@ require("lazy").setup({
   { "neovim/nvim-lspconfig" },
   { "williamboman/mason.nvim",          config = true },
   { "williamboman/mason-lspconfig.nvim" },
+  {
+    "folke/trouble.nvim",
+    dependencies = "nvim-tree/nvim-web-devicons",
+  },
+  {
+    "nvim-telescope/telescope-fzf-native.nvim",
+    build = "make",
+  },
+
 
   -- Autocompletado
   { "hrsh7th/nvim-cmp" },
@@ -88,9 +97,16 @@ require("lazy").setup({
   },
 
   ---------------------------------------------------------------------
-  -- 🔧 Control de Versiones
+  -- 🔧 Control de versiones
   ---------------------------------------------------------------------
   { "lewis6991/gitsigns.nvim", config = true },
   { "tpope/vim-fugitive" },
+  {
+    "folke/which-key.nvim",
+    config = true,
+  }
+
 
 })
+
+require("telescope").load_extension("fzf")
