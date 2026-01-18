@@ -2,9 +2,6 @@ vim.opt.rtp:prepend("~/.local/share/nvim/lazy/lazy.nvim")
 
 require("lazy").setup({
 
-  ---------------------------------------------------------------------
-  -- 🌈 Temas y Apariencia
-  ---------------------------------------------------------------------
   { "catppuccin/nvim",                     name = "catppuccin", priority = 999 },
   { "lukas-reineke/indent-blankline.nvim", main = "ibl",        opts = {} },
   { "RRethy/vim-illuminate" },
@@ -24,9 +21,6 @@ require("lazy").setup({
   },
   { "goolord/alpha-nvim",               dependencies = { "nvim-tree/nvim-web-devicons" } },
 
-  ---------------------------------------------------------------------
-  -- 🗂️ Navegación y Exploración
-  ---------------------------------------------------------------------
   {
     "nvim-tree/nvim-tree.lua",
     dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -37,17 +31,11 @@ require("lazy").setup({
     dependencies = { "nvim-lua/plenary.nvim" },
   },
 
-  ---------------------------------------------------------------------
-  -- 🧠 Sintaxis y Análisis de Código
-  ---------------------------------------------------------------------
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
   },
 
-  ---------------------------------------------------------------------
-  -- ⚙️ LSP y Autocompletado
-  ---------------------------------------------------------------------
   { "neovim/nvim-lspconfig" },
   { "williamboman/mason.nvim",          config = true },
   { "williamboman/mason-lspconfig.nvim" },
@@ -60,8 +48,6 @@ require("lazy").setup({
     build = "make",
   },
 
-
-  -- Autocompletado
   { "hrsh7th/nvim-cmp" },
   { "hrsh7th/cmp-nvim-lsp" },
   { "hrsh7th/cmp-buffer" },
@@ -69,7 +55,6 @@ require("lazy").setup({
   { "hrsh7th/cmp-cmdline" },
   { "saadparwaiz1/cmp_luasnip" },
 
-  -- Snippets
   {
     "L3MON4D3/LuaSnip",
     build = "make install_jsregexp",
@@ -85,10 +70,6 @@ require("lazy").setup({
   { "rafamadriz/friendly-snippets" },
   { "windwp/nvim-autopairs",       config = true },
 
-  ---------------------------------------------------------------------
-  -- 🧹 Formateo y Limpieza. Nota: La configuración está en
-  -- /config/confom.lua
-  ---------------------------------------------------------------------
   {
     "stevearc/conform.nvim",
     config = function()
@@ -96,16 +77,12 @@ require("lazy").setup({
     end,
   },
 
-  ---------------------------------------------------------------------
-  -- 🔧 Control de versiones
-  ---------------------------------------------------------------------
   { "lewis6991/gitsigns.nvim", config = true },
   { "tpope/vim-fugitive" },
   {
     "folke/which-key.nvim",
     config = true,
   }
-
 
 })
 

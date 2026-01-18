@@ -32,11 +32,10 @@ dashboard.section.footer.val = {
   [[⠄⠄⠄⠄⠄⠈⠙⠑⣠⣤⣴⡖⠄⠿⣋⣉⣉⡁⠄⢾⣦⠄⠄⠄⠄⠄⠄⠄⠄]],
 }
 
-vim.cmd([[hi AlphaHeader guifg=#c6a0f6]]) -- violeta Catppuccin
-vim.cmd([[hi AlphaFooter guifg=#f5c2e7]]) -- rosado Catppuccin
+vim.cmd([[hi AlphaHeader guifg=#c6a0f6]])
+vim.cmd([[hi AlphaFooter guifg=#f5c2e7]])
 
 dashboard.section.header.opts.hl = "AlphaHeader"
 dashboard.section.footer.opts.hl = "AlphaFooter"
 
--- 🚀 CARGA FINAL
 alpha.setup(dashboard.config)

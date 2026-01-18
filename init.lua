@@ -1,20 +1,15 @@
--- 🏁 Leader keys
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- ⚙️ Configuración base
-require("basic")    -- Opciones generales
-require("keymaps")  -- Atajos
-require("autocmds") -- Autocomandos
-require("plugins")  -- Plugins (Lazy, etc.)
+require("basic")
+require("keymaps")
+require("autocmds")
+require("plugins")
 
--- 💡 Configuración avanzada
-require("cmp_settings") -- Autocompletado nvim-cmp
-require("theme")        -- Tema y colores
+require("cmp_settings")
+require("theme")
 
--- 🧠 LSP (Lenguajes)
-require("lsp") -- Carga mason + servidores
+require("lsp")
 
--- 🎨 Interfaz
-require("config.lualine") -- Barra de estado
-require("config.alpha")   -- Pantalla de inicio (Alpha)
+require("config.lualine")
+require("config.alpha")

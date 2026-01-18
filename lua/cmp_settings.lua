@@ -47,7 +47,7 @@ cmp.setup({
     { name = "luasnip" },
     { name = "buffer" },
     { name = "nvim_lua" },
-    { name = "path" }, -- reemplaza async_path (plugin más común)
+    { name = "path" },
   }),
 
   window = {

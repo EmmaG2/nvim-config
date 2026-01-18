@@ -19,22 +19,20 @@ lspconfig.clangd.setup({
   end,
 })
 
--- TypeScript / React
 lspconfig.ts_ls.setup {}
 
--- lua
 lspconfig.lua_ls.setup {
   settings = {
     Lua = {
       runtime = {
-        version = "LuaJIT", -- Neovim usa LuaJIT
+        version = "LuaJIT",
       },
       diagnostics = {
-        globals = { "vim" }, -- para que no marque "vim" como variable indefinida
+        globals = { "vim" },
       },
       workspace = {
         library = vim.api.nvim_get_runtime_file("", true),
-        checkThirdParty = false, -- evita warnings molestos
+        checkThirdParty = false,
       },
       telemetry = { enable = false },
     },
