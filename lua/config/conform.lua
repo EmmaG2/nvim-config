@@ -13,8 +13,6 @@ conform.setup({
   },
 })
 
--- Atajo manual: <leader>f para formatear
 vim.keymap.set({ "n", "v" }, "<leader>f", function()
   require("conform").format({ async = true, lsp_fallback = true })
 end, { desc = "Format file" })
-
