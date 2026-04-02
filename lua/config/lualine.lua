@@ -20,7 +20,7 @@ require('lualine').setup({
     lualine_c = { 'filename' },
     lualine_x = { 'diagnostics', 'encoding', 'filetype' },
     lualine_y = { 'progress' },
-    lualine_z = { 'location', 'os.date("%H:%M")' },
+    lualine_z = { 'location', function() return os.date("%H:%M") end },
   },
 })
 
