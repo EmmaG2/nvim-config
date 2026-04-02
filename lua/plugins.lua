@@ -1,4 +1,14 @@
-vim.opt.rtp:prepend("~/.local/share/nvim/lazy/lazy.nvim")
+-- Bootstrap: clona lazy.nvim si no existe
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git", "clone", "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable",
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 
@@ -22,7 +32,11 @@ require("lazy").setup({
       require("noice").setup()
     end,
   },
-  { "goolord/alpha-nvim",               dependencies = { "nvim-tree/nvim-web-devicons" } },
+  {
+    "goolord/alpha-nvim",
+    lazy = false,
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+  },
 
   ---------------------------------------------------------------------
   -- 🗂️ Navegación y Exploración
@@ -42,7 +56,23 @@ require("lazy").setup({
   ---------------------------------------------------------------------
   {
     "nvim-treesitter/nvim-treesitter",
+    branch = "master",
     build = ":TSUpdate",
+    config = function()
+      require("nvim-treesitter.configs").setup({
+        ensure_installed = {
+          -- Sistemas / general
+          "cpp", "c", "lua", "python", "java",
+          -- Web
+          "javascript", "typescript", "tsx",
+          "html", "css",
+          "vue", "astro",
+          -- Datos / config
+          "json", "yaml", "toml",
+        },
+        highlight = { enable = true },
+      })
+    end,
   },
 
   ---------------------------------------------------------------------
@@ -68,6 +98,8 @@ require("lazy").setup({
   { "hrsh7th/cmp-path" },
   { "hrsh7th/cmp-cmdline" },
   { "saadparwaiz1/cmp_luasnip" },
+  { "hrsh7th/cmp-nvim-lsp-signature-help" }, -- firma de funciones en el menú
+  { "onsails/lspkind.nvim" },                -- íconos VSCode en el menú de completado
 
   -- Snippets
   {
@@ -84,6 +116,18 @@ require("lazy").setup({
   },
   { "rafamadriz/friendly-snippets" },
   { "windwp/nvim-autopairs",       config = true },
+  {
+    "windwp/nvim-ts-autotag",
+    config = function()
+      require("nvim-ts-autotag").setup({
+        opts = {
+          enable_close         = true,
+          enable_rename        = true,
+          enable_close_on_slash = true,
+        },
+      })
+    end,
+  },
 
   ---------------------------------------------------------------------
   -- 🧹 Formateo y Limpieza. Nota: La configuración está en
