@@ -1,4 +1,3 @@
-local lspconfig   = require("lspconfig")
 local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
 -- Capacidades web (con soporte de snippets habilitado para HTML/CSS/emmet)
@@ -10,7 +9,7 @@ cpp_caps.textDocument.completion.completionItem.snippetSupport = false
 
 -- ─── C / C++ ────────────────────────────────────────────────────────────────
 
-lspconfig.clangd.setup({
+vim.lsp.config('clangd', {
   capabilities = cpp_caps,
   cmd = {
     "clangd",
@@ -27,7 +26,7 @@ lspconfig.clangd.setup({
 
 -- ─── Lua ────────────────────────────────────────────────────────────────────
 
-lspconfig.lua_ls.setup({
+vim.lsp.config('lua_ls', {
   capabilities = capabilities,
   settings = {
     Lua = {
@@ -44,9 +43,11 @@ lspconfig.lua_ls.setup({
 
 -- ─── TypeScript / JavaScript / React ────────────────────────────────────────
 
-lspconfig.ts_ls.setup({
+local vue_plugin_path = vim.fn.stdpath("data")
+  .. "/mason/packages/vue-language-server/node_modules/@vue/typescript-plugin"
+
+vim.lsp.config('ts_ls', {
   capabilities = web_caps,
-  -- ts_ls maneja JS, TS, JSX, TSX (NO .vue, eso lo maneja volar)
   filetypes = {
     "javascript",
     "javascriptreact",
@@ -54,20 +55,30 @@ lspconfig.ts_ls.setup({
     "typescript",
     "typescriptreact",
     "typescript.tsx",
+    "vue",
+  },
+  init_options = {
+    plugins = {
+      {
+        name = "@vue/typescript-plugin",
+        location = vue_plugin_path,
+        languages = { "vue" },
+      },
+    },
   },
   settings = {
     typescript = {
       inlayHints = {
-        includeInlayParameterNameHints    = "all",
-        includeInlayPropertyDeclarationTypeHints = true,
-        includeInlayFunctionLikeReturnTypeHints  = true,
+        includeInlayParameterNameHints             = "all",
+        includeInlayPropertyDeclarationTypeHints   = true,
+        includeInlayFunctionLikeReturnTypeHints    = true,
       },
     },
     javascript = {
       inlayHints = {
-        includeInlayParameterNameHints    = "all",
-        includeInlayPropertyDeclarationTypeHints = true,
-        includeInlayFunctionLikeReturnTypeHints  = true,
+        includeInlayParameterNameHints             = "all",
+        includeInlayPropertyDeclarationTypeHints   = true,
+        includeInlayFunctionLikeReturnTypeHints    = true,
       },
     },
   },
@@ -75,7 +86,7 @@ lspconfig.ts_ls.setup({
 
 -- ─── ESLint ──────────────────────────────────────────────────────────────────
 
-lspconfig.eslint.setup({
+vim.lsp.config('eslint', {
   capabilities = web_caps,
   filetypes = {
     "javascript", "javascriptreact", "javascript.jsx",
@@ -92,23 +103,21 @@ lspconfig.eslint.setup({
 })
 
 -- ─── Vue 3 (Volar) ──────────────────────────────────────────────────────────
--- hybridMode = false: Volar gestiona TODO el soporte TypeScript dentro de .vue
--- (no necesita ts_ls para archivos Vue)
 
--- Volar 3.x always runs in hybrid mode (takeover mode was removed in v3.0.0).
--- It delegates TypeScript to ts_ls automatically via the on_init handler
--- defined in nvim-lspconfig's vue_ls.lua.
-lspconfig.vue_ls.setup({
+vim.lsp.config('vue_ls', {
   capabilities = web_caps,
   filetypes = { "vue" },
+  init_options = {
+    vue = {
+      hybridMode = true,
+    },
+  },
 })
 
 -- ─── Astro ──────────────────────────────────────────────────────────────────
 
-lspconfig.astro.setup({
+vim.lsp.config('astro', {
   capabilities = web_caps,
-  -- Disable LSP formatting: astro-ls uses a bundled prettier without the
-  -- astro plugin, causing repeated warnings. Conform handles formatting.
   on_attach = function(client)
     client.server_capabilities.documentFormattingProvider = false
   end,
@@ -116,23 +125,23 @@ lspconfig.astro.setup({
 
 -- ─── HTML ────────────────────────────────────────────────────────────────────
 
-lspconfig.html.setup({
+vim.lsp.config('html', {
   capabilities = web_caps,
   filetypes = { "html", "htmldjango", "templ" },
   init_options = {
-    provideFormatter = false, -- dejamos formateo a Prettier
+    provideFormatter = false,
   },
 })
 
 -- ─── CSS / SCSS / LESS ───────────────────────────────────────────────────────
 
-lspconfig.cssls.setup({
+vim.lsp.config('cssls', {
   capabilities = web_caps,
 })
 
 -- ─── Tailwind CSS ────────────────────────────────────────────────────────────
 
-lspconfig.tailwindcss.setup({
+vim.lsp.config('tailwindcss', {
   capabilities = web_caps,
   filetypes = {
     "html", "css", "scss",
@@ -144,7 +153,6 @@ lspconfig.tailwindcss.setup({
     tailwindCSS = {
       experimental = {
         classRegex = {
-          -- Soporta cn(), clsx(), cva() y similares
           { "cn\\(([^)]*)\\)",    "(?:'|\"|`)([^']*)(?:'|\"|`)" },
           { "clsx\\(([^)]*)\\)",  "(?:'|\"|`)([^']*)(?:'|\"|`)" },
           { "cva\\(([^)]*)\\)",   "(?:'|\"|`)([^']*)(?:'|\"|`)" },
@@ -156,7 +164,7 @@ lspconfig.tailwindcss.setup({
 
 -- ─── Emmet ───────────────────────────────────────────────────────────────────
 
-lspconfig.emmet_language_server.setup({
+vim.lsp.config('emmet_language_server', {
   capabilities = web_caps,
   filetypes = {
     "html", "css", "scss",
@@ -164,4 +172,11 @@ lspconfig.emmet_language_server.setup({
     "typescript", "typescriptreact",
     "vue", "astro",
   },
+})
+
+-- ─── Habilitar todos los servidores ─────────────────────────────────────────
+
+vim.lsp.enable({
+  'clangd', 'lua_ls', 'ts_ls', 'eslint', 'vue_ls',
+  'astro', 'html', 'cssls', 'tailwindcss', 'emmet_language_server',
 })
