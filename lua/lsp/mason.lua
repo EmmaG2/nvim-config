@@ -17,6 +17,10 @@ require("mason-lspconfig").setup({
     -- (Mason no tiene binario precompilado para aarch64)
     "lua_ls",
 
+    -- Python
+    "pyright",
+    "ruff",
+
     -- JavaScript / TypeScript / React
     "ts_ls",
     "eslint",

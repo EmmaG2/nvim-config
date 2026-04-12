@@ -6,7 +6,7 @@ conform.setup({
     cpp    = { "clang_format" },
     c      = { "clang_format" },
     lua    = { "stylua" },
-    python = { "black" },
+    python = { "isort", "black" },
 
     -- Web (Prettier maneja todo)
     javascript      = { "prettier" },

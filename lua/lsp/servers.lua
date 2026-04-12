@@ -41,6 +41,38 @@ vim.lsp.config('lua_ls', {
   },
 })
 
+-- ─── Python ──────────────────────────────────────────────────────────────────
+
+vim.lsp.config('pyright', {
+  capabilities = capabilities,
+  settings = {
+    python = {
+      analysis = {
+        typeCheckingMode = "basic",
+        autoSearchPaths  = true,
+        useLibraryCodeForTypes = true,
+        diagnosticMode   = "openFilesOnly",
+      },
+    },
+  },
+})
+
+vim.lsp.config('ruff', {
+  capabilities = capabilities,
+  init_options = {
+    settings = {
+      lineLength = 100,
+      lint = {
+        select = { "E", "F", "I", "UP", "B", "FAST" },
+      },
+    },
+  },
+  on_attach = function(client)
+    -- Ruff maneja diagnósticos; deshabilita formato LSP (usa conform/black)
+    client.server_capabilities.documentFormattingProvider = false
+  end,
+})
+
 -- ─── TypeScript / JavaScript / React ────────────────────────────────────────
 
 local vue_plugin_path = vim.fn.stdpath("data")
@@ -177,6 +209,7 @@ vim.lsp.config('emmet_language_server', {
 -- ─── Habilitar todos los servidores ─────────────────────────────────────────
 
 vim.lsp.enable({
-  'clangd', 'lua_ls', 'ts_ls', 'eslint', 'vue_ls',
+  'clangd', 'lua_ls', 'pyright', 'ruff',
+  'ts_ls', 'eslint', 'vue_ls',
   'astro', 'html', 'cssls', 'tailwindcss', 'emmet_language_server',
 })
