@@ -21,10 +21,10 @@ vim.keymap.set('n', '<leader>q', ':q<CR>', { noremap = true, silent = true }) --
 -- === VENTANAS (splits) ===
 vim.keymap.set('n', '<leader>v', ':vsplit<CR>', { noremap = true, silent = true }) -- split vertical
 vim.keymap.set('n', '<leader>s', ':split<CR>', { noremap = true, silent = true })  -- split horizontal
-vim.keymap.set('n', '<C-q>', '<C-w>h', { noremap = true, silent = true })          -- mover ventana izq
-vim.keymap.set('n', '<C-w>', '<C-w>l', { noremap = true, silent = true })          -- mover ventana der
-vim.keymap.set('n', '<C-e>', '<C-w>j', { noremap = true, silent = true })          -- mover ventana abajo
-vim.keymap.set('n', '<C-r>', '<C-w>k', { noremap = true, silent = true })          -- mover ventana arriba
+vim.keymap.set('n', '<M-h>', '<C-w>h', { noremap = true, silent = true })
+vim.keymap.set('n', '<M-l>', '<C-w>l', { noremap = true, silent = true })
+vim.keymap.set('n', '<M-j>', '<C-w>j', { noremap = true, silent = true })
+vim.keymap.set('n', '<M-k>', '<C-w>k', { noremap = true, silent = true })
 
 -- === UTILIDAD ===
 vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
