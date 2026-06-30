@@ -192,6 +192,26 @@ require("lazy").setup({
   },
 
   ---------------------------------------------------------------------
+  -- 💾 Sesiones y Utilidad
+  ---------------------------------------------------------------------
+  {
+    "folke/persistence.nvim",
+    event = "BufReadPre",
+    opts = { dir = vim.fn.stdpath("state") .. "/sessions/" },
+    keys = {
+      { "<leader>qs", function() require("persistence").load() end,                desc = "Restaurar sesión (cwd)" },
+      { "<leader>ql", function() require("persistence").load({ last = true }) end, desc = "Restaurar última sesión" },
+      { "<leader>qd", function() require("persistence").stop() end,                desc = "No guardar sesión al salir" },
+    },
+  },
+  {
+    "mbbill/undotree",
+    keys = {
+      { "<leader>u", "<cmd>UndotreeToggle<cr>", desc = "Undotree" },
+    },
+  },
+
+  ---------------------------------------------------------------------
   -- 🔧 Control de versiones
   ---------------------------------------------------------------------
   { "lewis6991/gitsigns.nvim", config = true },
