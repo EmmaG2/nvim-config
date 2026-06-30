@@ -27,10 +27,8 @@ vim.keymap.set('n', '<C-e>', '<C-w>j', { noremap = true, silent = true })       
 vim.keymap.set('n', '<C-r>', '<C-w>k', { noremap = true, silent = true })          -- mover ventana arriba
 
 -- === UTILIDAD ===
-vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>', { noremap = true, silent = true })       -- explorador
-vim.keymap.set('n', '<leader>f', ':Telescope find_files<CR>', { noremap = true, silent = true }) -- buscar archivo
-vim.keymap.set('n', '<leader>g', ':Telescope live_grep<CR>', { noremap = true, silent = true })  -- buscar en texto
-vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { noremap = true, silent = true })   -- ver errores
+vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { noremap = true, silent = true })
 -- Siguiente error
 vim.keymap.set("n", "<leader>n", function() vim.diagnostic.jump({ count = 1, float = true }) end,
   { noremap = true, silent = true, desc = "Siguiente error" })
@@ -44,6 +42,7 @@ vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, { noremap = true, silent = 
 vim.keymap.set('i', 'jk', '<Esc>', { noremap = true, silent = true }) -- escape rápido
 
 -- === FUZZY FINDER ===
-vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>")
-vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>")
-vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>")
+vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>",  { desc = "Buscar archivo" })
+vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>",   { desc = "Buscar en texto" })
+vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>",     { desc = "Buscar buffer" })
+vim.keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>",    { desc = "Archivos recientes" })
