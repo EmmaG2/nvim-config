@@ -80,19 +80,37 @@ require("lazy").setup({
     "nvim-treesitter/nvim-treesitter",
     branch = "master",
     build = ":TSUpdate",
+    dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
     config = function()
       require("nvim-treesitter.configs").setup({
         ensure_installed = {
-          -- Sistemas / general
           "cpp", "c", "lua", "python", "java",
-          -- Web
           "javascript", "typescript", "tsx",
           "html", "css",
           "vue", "astro",
-          -- Datos / config
           "json", "yaml", "toml",
         },
         highlight = { enable = true },
+        indent   = { enable = true },
+        textobjects = {
+          select = {
+            enable    = true,
+            lookahead = true,
+            keymaps = {
+              ["af"] = "@function.outer",
+              ["if"] = "@function.inner",
+              ["ac"] = "@class.outer",
+              ["ic"] = "@class.inner",
+              ["aa"] = "@parameter.outer",
+              ["ia"] = "@parameter.inner",
+            },
+          },
+          move = {
+            enable              = true,
+            goto_next_start     = { ["]f"] = "@function.outer", ["]c"] = "@class.outer" },
+            goto_previous_start = { ["[f"] = "@function.outer", ["[c"] = "@class.outer" },
+          },
+        },
       })
     end,
   },
@@ -137,6 +155,17 @@ require("lazy").setup({
     end,
   },
   { "rafamadriz/friendly-snippets" },
+  { "numToStr/Comment.nvim",        config = true },
+  { "kylechui/nvim-surround",       config = true },
+  {
+    "folke/flash.nvim",
+    event = "VeryLazy",
+    keys = {
+      { "s",     function() require("flash").jump() end,            mode = { "n", "x", "o" }, desc = "Flash jump" },
+      { "S",     function() require("flash").treesitter() end,      mode = { "n", "x", "o" }, desc = "Flash treesitter" },
+      { "<c-s>", function() require("flash").toggle() end,          mode = { "c" },            desc = "Flash toggle" },
+    },
+  },
   { "windwp/nvim-autopairs",       config = true },
   {
     "windwp/nvim-ts-autotag",
