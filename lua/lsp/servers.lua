@@ -125,11 +125,18 @@ vim.lsp.config('eslint', {
     "typescript", "typescriptreact", "typescript.tsx",
     "vue", "astro",
   },
-  -- Aplica fixes de ESLint automáticamente al guardar
+  -- Aplica fixes de ESLint al guardar. Se invoca la code action
+  -- 'source.fixAll.eslint' en vez del comando :EslintFixAll porque este
+  -- on_attach reemplaza al de nvim-lspconfig, que es quien crea ese comando.
   on_attach = function(_, bufnr)
     vim.api.nvim_create_autocmd("BufWritePre", {
-      buffer  = bufnr,
-      command = "EslintFixAll",
+      buffer = bufnr,
+      callback = function()
+        vim.lsp.buf.code_action({
+          context = { only = { "source.fixAll.eslint" }, diagnostics = {} },
+          apply = true,
+        })
+      end,
     })
   end,
 })
