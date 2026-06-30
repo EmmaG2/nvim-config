@@ -6,3 +6,6 @@ vim.opt.expandtab = true
 vim.opt.smartindent = true
 vim.opt.clipboard = "unnamedplus" -- copiar/pegar con el sistema
 vim.opt.termguicolors = true
+
+-- Persiste historial de undo entre sesiones (undotree funciona cross-session)
+vim.opt.undofile = true
