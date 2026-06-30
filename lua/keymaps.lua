@@ -32,10 +32,12 @@ vim.keymap.set('n', '<leader>f', ':Telescope find_files<CR>', { noremap = true, 
 vim.keymap.set('n', '<leader>g', ':Telescope live_grep<CR>', { noremap = true, silent = true })  -- buscar en texto
 vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { noremap = true, silent = true })   -- ver errores
 -- Siguiente error
-vim.keymap.set("n", "<leader>n", vim.diagnostic.goto_next, { noremap = true, silent = true, desc = "Siguiente error" })
+vim.keymap.set("n", "<leader>n", function() vim.diagnostic.jump({ count = 1, float = true }) end,
+  { noremap = true, silent = true, desc = "Siguiente error" })
 
 -- Error anterior
-vim.keymap.set("n", "<leader>p", vim.diagnostic.goto_prev, { noremap = true, silent = true, desc = "Error anterior" })
+vim.keymap.set("n", "<leader>p", function() vim.diagnostic.jump({ count = -1, float = true }) end,
+  { noremap = true, silent = true, desc = "Error anterior" })
 vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, { noremap = true, silent = true }) -- renombrar símbolo
 
 -- === EXTRA ===
