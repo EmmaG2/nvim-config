@@ -9,7 +9,7 @@ require("telescope").setup({
 
 require('lualine').setup({
   options = {
-    theme = 'catppuccin',
+    theme = 'catppuccin-nvim',
     icons_enabled = true,
     section_separators = { left = '', right = '' },
     component_separators = { left = '', right = '' },
@@ -23,5 +23,3 @@ require('lualine').setup({
     lualine_z = { 'location', function() return os.date("%H:%M") end },
   },
 })
-
-require("catppuccin").setup({ integrations = { lualine = true } })

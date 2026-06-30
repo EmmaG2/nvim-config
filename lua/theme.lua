@@ -8,6 +8,7 @@ require("catppuccin").setup({
     gitsigns = true,
     telescope = true,
     nvimtree = true,
+    lualine = {},
   }
 })
 
