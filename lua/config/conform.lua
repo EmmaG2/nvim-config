@@ -26,8 +26,8 @@ conform.setup({
   },
 
   format_on_save = {
-    timeout_ms   = 1000,
-    lsp_fallback = true,
+    timeout_ms  = 1000,
+    lsp_format  = "fallback",
   },
 
   -- Opciones de prettier (puedes sobreescribir con .prettierrc en el proyecto)
@@ -46,5 +46,5 @@ conform.setup({
 
 -- Atajo manual: <leader>cf para formatear (evita conflicto con <leader>f de telescope)
 vim.keymap.set({ "n", "v" }, "<leader>cf", function()
-  require("conform").format({ async = true, lsp_fallback = true })
+  require("conform").format({ async = true, lsp_format = "fallback" })
 end, { desc = "Format file" })
