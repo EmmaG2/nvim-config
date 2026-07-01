@@ -18,7 +18,14 @@ require('lualine').setup({
     lualine_a = { 'mode' },
     lualine_b = { 'branch' },
     lualine_c = { 'filename' },
-    lualine_x = { 'diagnostics', 'encoding', 'filetype' },
+    lualine_x = {
+      {
+        function() return require("noice").api.statusline.mode.get() end,
+        cond = function() return package.loaded["noice"] and require("noice").api.statusline.mode.has() end,
+        color = { fg = "#ff9e64" },
+      },
+      'diagnostics', 'encoding', 'filetype',
+    },
     lualine_y = { 'progress' },
     lualine_z = { 'location', function() return os.date("%H:%M") end },
   },
