@@ -13,8 +13,6 @@ dashboard.section.header.val = {
 
 dashboard.section.buttons.val = {
   dashboard.button("e", "  Nuevo archivo", ":ene <BAR> startinsert <CR>"),
-  dashboard.button("f", "󰈞  Buscar archivo", ":Telescope find_files<CR>"),
-  dashboard.button("r", "󰄉  Archivos recientes", ":Telescope oldfiles<CR>"),
   dashboard.button("q", "󰅚  Salir", ":qa<CR>"),
 }
 
