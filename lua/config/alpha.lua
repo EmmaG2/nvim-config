@@ -11,7 +11,6 @@ dashboard.section.header.val = {
   [[──────────────────────────────────────────────────────────────────]],
 }
 
--- Gradiente Catppuccin Mocha (mauve -> rosewater) aplicado linea a linea
 local gradient = { "#cba6f7", "#d3b2f2", "#dcbdec", "#e4c9e7", "#edd4e1", "#f5e0dc" }
 for i, hex in ipairs(gradient) do
   vim.cmd(("hi AlphaHeader%d guifg=%s"):format(i, hex))
@@ -33,12 +32,11 @@ dashboard.section.buttons.val = {
 
 vim.cmd([[hi AlphaFooter guifg=#b4befe]]) -- lavender
 
--- Caja de ancho dinamico segun el texto de stats de lazy.nvim
 local function boxed(text)
   return {
     "      · · ✦ · ·",
     "╭" .. string.rep("─", #text + 2) .. "╮",
-    "│ " .. text .. " │",
+    "│ " .. text .. "   │",
     "╰" .. string.rep("─", #text + 2) .. "╯",
   }
 end
@@ -46,8 +44,6 @@ end
 dashboard.section.footer.val = boxed("cargando...")
 dashboard.section.footer.opts.hl = "AlphaFooter"
 
--- Stats reales de lazy.nvim solo se conocen tras terminar de cargar,
--- por eso se recalcula el footer y se re-dibuja al disparar AlphaReady.
 vim.api.nvim_create_autocmd("User", {
   pattern = "AlphaReady",
   once = true,

@@ -2,7 +2,7 @@
 
 ![Dashboard](screenshots/dashboard.png)
 
-> 🚀 Configuración **modular, limpia y optimizada** para desarrollo moderno con **Neovim 0.10+**  
+> 🚀 Configuración **modular, limpia y optimizada** para desarrollo moderno con **Neovim 0.12+**
 > Incluye soporte para **C++**, **Lua**, **TypeScript**, autocompletado inteligente, snippets personalizados  
 > y una estética inspirada en **2B de NieR: Automata** ⚔️💎  
 

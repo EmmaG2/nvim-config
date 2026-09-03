@@ -1,15 +1,6 @@
-require("nvim-tree").setup({})
-
-require("telescope").setup({
-  defaults = {
-    layout_strategy = "horizontal",
-    layout_config = { width = 0.9 },
-  }
-})
-
 require('lualine').setup({
   options = {
-    theme = 'catppuccin-nvim',
+    theme = 'catppuccin',
     icons_enabled = true,
     section_separators = { left = '', right = '' },
     component_separators = { left = '', right = '' },
