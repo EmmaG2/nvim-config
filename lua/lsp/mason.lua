@@ -31,6 +31,9 @@ require("mason-lspconfig").setup({
     -- Astro
     "astro",
 
+    -- Terraform
+    "terraformls",
+
     -- Web general
     "html",
     "cssls",

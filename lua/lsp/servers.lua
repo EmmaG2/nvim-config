@@ -24,6 +24,11 @@ vim.lsp.config('clangd', {
   end,
 })
 
+vim.lsp.config('asm_lsp', {
+  capabilities = capabilities,
+  filetypes = { "asm", "nasm", "vmasm" },
+})
+
 -- ─── Lua ────────────────────────────────────────────────────────────────────
 
 vim.lsp.config('lua_ls', {
@@ -48,10 +53,10 @@ vim.lsp.config('pyright', {
   settings = {
     python = {
       analysis = {
-        typeCheckingMode = "basic",
-        autoSearchPaths  = true,
+        typeCheckingMode       = "basic",
+        autoSearchPaths        = true,
         useLibraryCodeForTypes = true,
-        diagnosticMode   = "openFilesOnly",
+        diagnosticMode         = "openFilesOnly",
       },
     },
   },
@@ -76,7 +81,7 @@ vim.lsp.config('ruff', {
 -- ─── TypeScript / JavaScript / React ────────────────────────────────────────
 
 local vue_plugin_path = vim.fn.stdpath("data")
-  .. "/mason/packages/vue-language-server/node_modules/@vue/typescript-plugin"
+    .. "/mason/packages/vue-language-server/node_modules/@vue/typescript-plugin"
 
 vim.lsp.config('ts_ls', {
   capabilities = web_caps,
@@ -101,16 +106,16 @@ vim.lsp.config('ts_ls', {
   settings = {
     typescript = {
       inlayHints = {
-        includeInlayParameterNameHints             = "all",
-        includeInlayPropertyDeclarationTypeHints   = true,
-        includeInlayFunctionLikeReturnTypeHints    = true,
+        includeInlayParameterNameHints           = "all",
+        includeInlayPropertyDeclarationTypeHints = true,
+        includeInlayFunctionLikeReturnTypeHints  = true,
       },
     },
     javascript = {
       inlayHints = {
-        includeInlayParameterNameHints             = "all",
-        includeInlayPropertyDeclarationTypeHints   = true,
-        includeInlayFunctionLikeReturnTypeHints    = true,
+        includeInlayParameterNameHints           = "all",
+        includeInlayPropertyDeclarationTypeHints = true,
+        includeInlayFunctionLikeReturnTypeHints  = true,
       },
     },
   },
@@ -162,6 +167,13 @@ vim.lsp.config('astro', {
   end,
 })
 
+-- ─── Terraform ──────────────────────────────────────────────────────────────
+
+vim.lsp.config('terraformls', {
+  capabilities = capabilities,
+  filetypes = { "terraform", "terraform-vars" },
+})
+
 -- ─── HTML ────────────────────────────────────────────────────────────────────
 
 vim.lsp.config('html', {
@@ -192,9 +204,9 @@ vim.lsp.config('tailwindcss', {
     tailwindCSS = {
       experimental = {
         classRegex = {
-          { "cn\\(([^)]*)\\)",    "(?:'|\"|`)([^']*)(?:'|\"|`)" },
-          { "clsx\\(([^)]*)\\)",  "(?:'|\"|`)([^']*)(?:'|\"|`)" },
-          { "cva\\(([^)]*)\\)",   "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+          { "cn\\(([^)]*)\\)",   "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+          { "clsx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+          { "cva\\(([^)]*)\\)",  "(?:'|\"|`)([^']*)(?:'|\"|`)" },
         },
       },
     },
@@ -216,7 +228,8 @@ vim.lsp.config('emmet_language_server', {
 -- ─── Habilitar todos los servidores ─────────────────────────────────────────
 
 vim.lsp.enable({
-  'clangd', 'lua_ls', 'pyright', 'ruff',
+  'clangd', 'asm_lsp', 'lua_ls', 'pyright', 'ruff',
   'ts_ls', 'eslint', 'vue_ls',
   'astro', 'html', 'cssls', 'tailwindcss', 'emmet_language_server',
+  'terraformls',
 })

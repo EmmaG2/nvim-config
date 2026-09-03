@@ -42,7 +42,75 @@ vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, { noremap = true, silent = 
 vim.keymap.set('i', 'jk', '<Esc>', { noremap = true, silent = true }) -- escape rápido
 
 -- === FUZZY FINDER ===
-vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>",  { desc = "Buscar archivo" })
-vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>",   { desc = "Buscar en texto" })
-vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>",     { desc = "Buscar buffer" })
-vim.keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>",    { desc = "Archivos recientes" })
+vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Buscar archivo" })
+vim.keymap.set("n", "<leader>fg", "<cmd>Telescope live_grep<cr>", { desc = "Buscar en texto" })
+vim.keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>", { desc = "Buscar buffer" })
+vim.keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Archivos recientes" })
+
+-- === ASM ===
+local dosbox = "/Applications/DOSBox-X.app/Contents/MacOS/dosbox-x"
+local tasm_dir = vim.fn.expand("~/assembly/tasm")
+
+local function tasm(run)
+  local source = vim.api.nvim_buf_get_name(0)
+  local filename = vim.fs.basename(source)
+  local basename = vim.fn.fnamemodify(filename, ":r")
+
+  if vim.bo.filetype ~= "asm" or source == "" then
+    vim.notify("Abre un archivo .asm antes de usar TASM", vim.log.levels.ERROR)
+    return
+  end
+
+  if #basename > 8 or not basename:match("^[%w_%-]+$") then
+    vim.notify("TASM requiere un nombre DOS válido de hasta 8 caracteres", vim.log.levels.ERROR)
+    return
+  end
+
+  if vim.fn.executable(dosbox) ~= 1 then
+    vim.notify("No se encontró DOSBox-X en /Applications", vim.log.levels.ERROR)
+    return
+  end
+
+  vim.cmd("write")
+
+  local command = {
+    dosbox,
+    "-fastlaunch",
+    "-c", 'mount c "' .. tasm_dir .. '"',
+    "-c", 'mount d "' .. vim.fs.dirname(source) .. '"',
+    "-c", "d:",
+    "-c", "c:\\tasm " .. filename,
+    "-c", "c:\\tlink " .. basename .. ".obj",
+  }
+
+  if run then
+    vim.list_extend(command, { "-c", basename .. ".exe" })
+  end
+
+  if vim.fn.jobstart(command, { detach = true }) <= 0 then
+    vim.notify("No se pudo iniciar DOSBox-X", vim.log.levels.ERROR)
+    return
+  end
+
+  vim.notify((run and "Ejecutando " or "Compilando ") .. filename)
+end
+
+vim.api.nvim_create_user_command("TasmBuild", function()
+  tasm(false)
+end, {
+  desc = "Compilar ensamblador con TASM"
+})
+
+vim.api.nvim_create_user_command("TasmRun", function()
+  tasm(true)
+end, {
+  desc = "Compilar y ejecutar ensamblador con TASM"
+})
+
+vim.keymap.set("n", "<leader>ab", "<cmd>TasmBuild<cr>", {
+  desc = "Compilar con TASM"
+})
+
+vim.keymap.set("n", "<leader>ar", "<cmd>TasmRun<cr>", {
+  desc = "Compilar y ejecutar con TASM"
+})
