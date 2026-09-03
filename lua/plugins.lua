@@ -232,6 +232,40 @@ require("lazy").setup({
     dependencies = "nvim-tree/nvim-web-devicons",
   },
   {
+    "nvim-neotest/neotest",
+    dependencies = {
+      "nvim-neotest/nvim-nio",
+      "nvim-lua/plenary.nvim",
+      "nvim-neotest/neotest-python",
+      "marilari88/neotest-vitest",
+      "nvim-neotest/neotest-jest",
+    },
+    config = function()
+      require("neotest").setup({
+        adapters = {
+          require("neotest-python")({ runner = "pytest" }),
+          require("neotest-vitest"),
+          require("neotest-jest")({}),
+        },
+        discovery = {
+          filter_dir = function(name)
+            return name ~= ".venv"
+          end,
+        },
+      })
+    end,
+    keys = {
+      { "<leader>ta", function() require("neotest").run.run(vim.fn.getcwd()) end, desc = "Todos los tests" },
+      { "<leader>tn", function() require("neotest").run.run() end, desc = "Test cercano" },
+      { "<leader>tf", function() require("neotest").run.run(vim.fn.expand("%")) end, desc = "Tests del archivo" },
+      { "<leader>tl", function() require("neotest").run.run_last() end, desc = "Repetir último test" },
+      { "<leader>ts", function() require("neotest").summary.toggle() end, desc = "Resumen de tests" },
+      { "<leader>to", function() require("neotest").output.open({ enter = true }) end, desc = "Salida del test" },
+      { "<leader>tO", function() require("neotest").output_panel.toggle() end, desc = "Panel de salida" },
+      { "<leader>tx", function() require("neotest").run.stop() end, desc = "Detener test" },
+    },
+  },
+  {
     "nvim-telescope/telescope-fzf-native.nvim",
     build = "make",
   },
