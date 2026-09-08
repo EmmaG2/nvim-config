@@ -1,7 +1,6 @@
 # Archivos de plugins y runtime
 plugin/
 pack/
-lazy-lock.json
 *.log
 node_modules
 

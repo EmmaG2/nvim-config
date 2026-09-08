@@ -1,45 +1,43 @@
 -- === MOVIMIENTO DE LÍNEA ===
-vim.keymap.set('n', '<C-h>', '^', { noremap = true, silent = true }) -- inicio de línea
-vim.keymap.set('n', '<C-l>', '$', { noremap = true, silent = true }) -- fin de línea
+vim.keymap.set('n', '<C-h>', '^', { silent = true, desc = "Inicio de línea" })
+vim.keymap.set('n', '<C-l>', '$', { silent = true, desc = "Fin de línea" })
 
 -- === MOVIMIENTO DE BLOQUES/PÁRRAFOS ===
-vim.keymap.set('n', '<C-j>', '}', { noremap = true, silent = true }) -- siguiente bloque/párrafo
-vim.keymap.set('n', '<C-k>', '{', { noremap = true, silent = true }) -- bloque/párrafo anterior
+vim.keymap.set('n', '<C-j>', '}', { silent = true, desc = "Siguiente párrafo" })
+vim.keymap.set('n', '<C-k>', '{', { silent = true, desc = "Párrafo anterior" })
 
 -- === INDENTACIÓN EN VISUAL MODE ===
-vim.keymap.set('v', '<Tab>', '>gv', { noremap = true, silent = true, expr = false })
-vim.keymap.set('v', '<S-Tab>', '<gv', { noremap = true, silent = true, expr = false })
+vim.keymap.set('v', '<Tab>', '>gv', { silent = true, desc = "Aumentar indentación" })
+vim.keymap.set('v', '<S-Tab>', '<gv', { silent = true, desc = "Reducir indentación" })
 
 -- === BUFFERS ===
-vim.keymap.set('n', '<leader>bn', ':bnext<CR>', { noremap = true, silent = true }) -- siguiente buffer
-vim.keymap.set('n', '<leader>bp', ':bprev<CR>', { noremap = true, silent = true }) -- buffer anterior
+vim.keymap.set('n', '<leader>bn', '<cmd>bnext<CR>', { silent = true, desc = "Siguiente buffer" })
+vim.keymap.set('n', '<leader>bp', '<cmd>bprev<CR>', { silent = true, desc = "Buffer anterior" })
 
 -- === GUARDAR / CERRAR ===
-vim.keymap.set('n', '<leader>w', ':w<CR>', { noremap = true, silent = true }) -- guardar
-vim.keymap.set('n', '<leader>q', ':q<CR>', { noremap = true, silent = true }) -- salir
+vim.keymap.set('n', '<leader>w', '<cmd>w<CR>', { silent = true, desc = "Guardar archivo" })
+vim.keymap.set('n', '<leader>q', '<cmd>q<CR>', { silent = true, desc = "Cerrar ventana" })
 
 -- === VENTANAS (splits) ===
-vim.keymap.set('n', '<leader>v', ':vsplit<CR>', { noremap = true, silent = true }) -- split vertical
-vim.keymap.set('n', '<leader>s', ':split<CR>', { noremap = true, silent = true })  -- split horizontal
-vim.keymap.set('n', '<M-h>', '<C-w>h', { noremap = true, silent = true })
-vim.keymap.set('n', '<M-l>', '<C-w>l', { noremap = true, silent = true })
-vim.keymap.set('n', '<M-j>', '<C-w>j', { noremap = true, silent = true })
-vim.keymap.set('n', '<M-k>', '<C-w>k', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>v', '<cmd>vsplit<CR>', { silent = true, desc = "Dividir verticalmente" })
+vim.keymap.set('n', '<leader>s', '<cmd>split<CR>', { silent = true, desc = "Dividir horizontalmente" })
+vim.keymap.set('n', '<M-h>', '<C-w>h', { silent = true, desc = "Ventana izquierda" })
+vim.keymap.set('n', '<M-l>', '<C-w>l', { silent = true, desc = "Ventana derecha" })
+vim.keymap.set('n', '<M-j>', '<C-w>j', { silent = true, desc = "Ventana inferior" })
+vim.keymap.set('n', '<M-k>', '<C-w>k', { silent = true, desc = "Ventana superior" })
 
 -- === UTILIDAD ===
-vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { noremap = true, silent = true })
--- Siguiente error
+vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<CR>', { silent = true, desc = "Explorador de archivos" })
+vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { silent = true, desc = "Ver diagnóstico" })
 vim.keymap.set("n", "<leader>n", function() vim.diagnostic.jump({ count = 1, float = true }) end,
   { noremap = true, silent = true, desc = "Siguiente error" })
 
--- Error anterior
 vim.keymap.set("n", "<leader>p", function() vim.diagnostic.jump({ count = -1, float = true }) end,
   { noremap = true, silent = true, desc = "Error anterior" })
-vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, { noremap = true, silent = true }) -- renombrar símbolo
+vim.keymap.set('n', '<leader>r', vim.lsp.buf.rename, { silent = true, desc = "Renombrar símbolo" })
 
 -- === EXTRA ===
-vim.keymap.set('i', 'jk', '<Esc>', { noremap = true, silent = true }) -- escape rápido
+vim.keymap.set('i', 'jk', '<Esc>', { silent = true, desc = "Salir de inserción" })
 
 -- === FUZZY FINDER ===
 vim.keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Buscar archivo" })

@@ -225,7 +225,7 @@ require("lazy").setup({
   -- ⚙️ LSP y Autocompletado
   ---------------------------------------------------------------------
   { "neovim/nvim-lspconfig" },
-  { "williamboman/mason.nvim",          config = true },
+  { "williamboman/mason.nvim" },
   { "williamboman/mason-lspconfig.nvim" },
   {
     "folke/trouble.nvim",
@@ -291,11 +291,10 @@ require("lazy").setup({
       local luasnip = require("luasnip")
       require("luasnip.loaders.from_vscode").lazy_load()
       require("luasnip.loaders.from_lua").lazy_load({
-        paths = "~/.config/nvim/LuaSnip/snippets",
+        paths = vim.fn.stdpath("config") .. "/LuaSnip/snippets",
       })
     end,
   },
-  { "rafamadriz/friendly-snippets" },
   { "numToStr/Comment.nvim",       config = true },
   { "kylechui/nvim-surround",      config = true },
   {
@@ -323,7 +322,7 @@ require("lazy").setup({
 
   ---------------------------------------------------------------------
   -- 🧹 Formateo y Limpieza. Nota: La configuración está en
-  -- /config/confom.lua
+  -- /config/conform.lua
   ---------------------------------------------------------------------
   {
     "stevearc/conform.nvim",
