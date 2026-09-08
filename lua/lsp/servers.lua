@@ -78,6 +78,12 @@ vim.lsp.config('ruff', {
   end,
 })
 
+-- ─── Java ────────────────────────────────────────────────────────────────────
+
+vim.lsp.config('jdtls', {
+  capabilities = capabilities,
+})
+
 -- ─── TypeScript / JavaScript / React ────────────────────────────────────────
 
 local vue_plugin_path = vim.fn.stdpath("data")
@@ -228,7 +234,7 @@ vim.lsp.config('emmet_language_server', {
 -- ─── Habilitar todos los servidores ─────────────────────────────────────────
 
 vim.lsp.enable({
-  'clangd', 'asm_lsp', 'lua_ls', 'pyright', 'ruff',
+  'clangd', 'asm_lsp', 'lua_ls', 'pyright', 'ruff', 'jdtls',
   'ts_ls', 'eslint', 'vue_ls',
   'astro', 'html', 'cssls', 'tailwindcss', 'emmet_language_server',
   'terraformls',
